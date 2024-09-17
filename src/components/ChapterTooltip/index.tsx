@@ -32,7 +32,8 @@ const ChapterTooltip = ({ chapter }: Props) => {
 
   return (
     <div
-      className="flex items-center h-full absolute"
+      id={`ii-section-${chapter.title}`}
+      className="flex items-center w-full h-full absolute z-20"
       style={{
         left: `${chapter.startPercentage}%`,
         width: `${chapter.endPercentage - chapter.startPercentage}%`,
@@ -41,12 +42,11 @@ const ChapterTooltip = ({ chapter }: Props) => {
       onMouseLeave={() => setOpen(false)}
     >
       <button
-        className="h-[70%] w-full hover:h-[90%]"
+        id={`section-${chapter.title}`}
+        className="h-full w-full"
         onClick={handleClickChapter}
       >
         <div className="relative flex h-full w-full justify-between items-center">
-          <div className="h-full w-[.2px] rounded-sm bg-gray-700 opacity-50"></div>
-          <div className="h-full w-[.2px] rounded-sm bg-gray-700 opacity-50"></div>
           <Tooltip open={open}>
             <div className="flex flex-col gap-2 items-center">
               <p>{chapter.title}</p>

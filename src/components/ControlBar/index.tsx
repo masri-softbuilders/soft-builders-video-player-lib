@@ -21,6 +21,7 @@ import {
   ForwardIcon,
   FullScreenIcon,
 } from "soft-builders-video-player-icons";
+import TimeSliderContainer from "../TimeSliderContainer";
 
 type Props<T> = {
   player: Player | undefined;
@@ -81,14 +82,8 @@ const ControlBar = <T,>({
 
       <CurrentTimeLabel />
 
-      <div className="w-[30%] hover:w-[40%] relative transition-all ease-in-out duration-500">
-        <div className="absolute w-full top-[25%] left-0 z-10">
-          <NotesPanal notes={notes} />
-        </div>
-        <div className="absolute w-full h-full top-0 left-0">
-          <ChaptersPanal chapters={chapters} />
-        </div>
-        <TimeSlider />
+      <div className="w-[30%] hover:w-[40%] transition-all ease-in-out duration-500">
+        <TimeSliderContainer chapters={chapters} notes={notes} />
       </div>
 
       <p>{durationFormater(player?.duration() || 0)}</p>

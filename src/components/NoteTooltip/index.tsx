@@ -24,7 +24,7 @@ const NoteTooltip = ({ note }: Props) => {
   }, [currentTime, note.time]);
   return (
     <div
-      className="w-1 h-1 rounded-full bg-white absolute"
+      className="w-1 h-1 rounded-full bg-white absolute z-30"
       style={{ left: `${note.percentage}%` }}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
