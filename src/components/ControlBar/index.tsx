@@ -57,7 +57,7 @@ const ControlBar = <T,>({
   }, [player]);
 
   return (
-    <div className="flex items-center justify-center gap-5 w-full">
+    <div className="flex items-center justify-center gap-3 w-full">
       <button
         onClick={() => {
           seek(-seekStep);
@@ -82,7 +82,7 @@ const ControlBar = <T,>({
 
       <CurrentTimeLabel />
 
-      <div className="w-[30%] hover:w-[40%] transition-all ease-in-out duration-500">
+      <div className="w-[30%] hover:w-[45%] transition-all ease-in-out duration-500">
         <TimeSliderContainer chapters={chapters} notes={notes} />
       </div>
 
