@@ -10,21 +10,25 @@
   ],
   "scripts": {
     "build:css": "npx postcss src/styles/tailwind.css -o dist/styles/tailwind.css && npx postcss src/components/Slider/style.css -o dist/components/Slider/style.css && npx postcss src/components/SoftBuildersVideoPlayer/style/style.css -o dist/components/SoftBuildersVideoPlayer/style/style.css",
-    "build": "npm run build:css && tsc"
+    "build:css:watch": "npx postcss src/styles/tailwind.css -o dist/styles/tailwind.css --watch && npx postcss src/components/Slider/style.css -o dist/components/Slider/style/style.css --watch && npx postcss src/components/SoftBuildersVideoPlayer/style/style.css -o dist/components/SoftBuildersVideoPlayer/style/style.css --watch",
+    "build": "npm run build:css && tsc",
+    "build:watch": "tsc --watch",
+    "start": "concurrently \"npm run build:css:watch\" \"npm run build:watch\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "video.js": "^8.18.0",
-    "soft-builders-video-player-icons": "^1.0.4"
+    "soft-builders-video-player-icons": "^1.0.5",
+    "video.js": "^8.18.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.0.1",
     "postcss": "^8.4.45",
     "postcss-cli": "^11.0.0",
     "tailwindcss": "^3.4.11",
