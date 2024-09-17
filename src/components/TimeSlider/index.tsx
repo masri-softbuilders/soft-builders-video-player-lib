@@ -15,13 +15,11 @@ type Props = {
 const TimeSlider = ({ chapters }: Props) => {
   const [timeSlider, setTimeSlider] = useState(0);
 
-  const { player } = useSoftBuildersVideoPlayerContext();
+  const { player, duration } = useSoftBuildersVideoPlayerContext();
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTimeSlider = Number(e.target.value);
     setTimeSlider(newTimeSlider);
-
-    const duration = player?.duration() || 1;
 
     const time = (newTimeSlider * duration) / DEFERENCE;
 
@@ -31,8 +29,6 @@ const TimeSlider = ({ chapters }: Props) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const currentTime = player?.currentTime() || 0;
-
-      const duration = player?.duration() || 1;
 
       const time = (currentTime * DEFERENCE) / duration;
 
@@ -46,8 +42,6 @@ const TimeSlider = ({ chapters }: Props) => {
   const [maskCuttes, setMaskCuttes] = useState("");
 
   useEffect(() => {
-    const duration = player?.duration() || 1;
-
     const arr: string[] = ["black 0%"];
     chapters.forEach((c) => {
       const startPercentage = Math.floor((c.startTime * 100) / duration);
@@ -67,7 +61,7 @@ const TimeSlider = ({ chapters }: Props) => {
     arr.push(`black 100%`);
 
     setMaskCuttes(arr.toString());
-  }, [chapters, player?.duration()]);
+  }, [chapters, duration]);
 
   return (
     <div className=" w-full h-2 flex items-center justify-center">

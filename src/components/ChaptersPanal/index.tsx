@@ -12,10 +12,9 @@ type Props = {
 };
 const ChaptersPanal = ({ chapters }: Props) => {
   const [cs, setCs] = useState<Chapter[]>([]);
-  const { player } = useSoftBuildersVideoPlayerContext();
+  const { duration } = useSoftBuildersVideoPlayerContext();
 
   useEffect(() => {
-    const duration = player?.duration() || 1;
     const newCs = chapters.map((c) => {
       const startPercentage = Math.floor((c.startTime * 100) / duration);
       const endPercentage = Math.floor((c.endTime * 100) / duration);
@@ -26,7 +25,7 @@ const ChaptersPanal = ({ chapters }: Props) => {
       };
     });
     setCs(newCs);
-  }, [chapters, player]);
+  }, [chapters, duration]);
 
   return (
     <div id="chapters-panal" className="w-full h-full relative ">

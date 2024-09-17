@@ -10,10 +10,9 @@ type Props = {
 const NotesPanal = ({ notes }: Props) => {
   const [ns, setNs] = useState<Note[]>([]);
 
-  const { player } = useSoftBuildersVideoPlayerContext();
+  const { duration } = useSoftBuildersVideoPlayerContext();
 
   useEffect(() => {
-    const duration = player?.duration() || 1;
     const newNs = notes.map((n) => {
       const percentage = Math.floor((n.time * 100) / duration);
       return {
@@ -22,7 +21,7 @@ const NotesPanal = ({ notes }: Props) => {
       };
     });
     setNs(newNs);
-  }, [notes, player]);
+  }, [notes, duration]);
   return (
     <div id="notes-panal" className="w-full h-full relative ">
       {ns.map((n, i) => (

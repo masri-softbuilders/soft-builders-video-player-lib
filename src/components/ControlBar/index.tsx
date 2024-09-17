@@ -37,7 +37,7 @@ const ControlBar = <T,>({
   seekStep = 5,
   handleSaveNoteAction,
 }: Props<T>) => {
-  const { isPaused, setIsPaused, setPlayer } =
+  const { isPaused, setIsPaused, setPlayer, setDuration, duration } =
     useSoftBuildersVideoPlayerContext();
 
   const seek = (duration: number) => {
@@ -54,6 +54,7 @@ const ControlBar = <T,>({
 
   useEffect(() => {
     setPlayer(player);
+    setDuration(player?.duration() || 1);
   }, [player]);
 
   return (
@@ -86,7 +87,7 @@ const ControlBar = <T,>({
         <TimeSliderContainer chapters={chapters} notes={notes} />
       </div>
 
-      <p>{durationFormater(player?.duration() || 0)}</p>
+      <p>{durationFormater(duration || 0)}</p>
 
       <div className="w-[10%]">
         <VolumeSlider />
