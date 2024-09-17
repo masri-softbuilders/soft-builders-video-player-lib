@@ -15,7 +15,8 @@ type Props = {
 const TimeSlider = ({ chapters }: Props) => {
   const [timeSlider, setTimeSlider] = useState(0);
 
-  const { player, duration } = useSoftBuildersVideoPlayerContext();
+  const { player, duration, downloadedBufferPercentage } =
+    useSoftBuildersVideoPlayerContext();
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTimeSlider = Number(e.target.value);
@@ -84,8 +85,10 @@ const TimeSlider = ({ chapters }: Props) => {
           linear-gradient(to right,
             #f97316 0%,
             #f97316 ${timeSlider}%,
-            #303030 ${timeSlider}%,
-            #303030 100%
+            #30303090 ${timeSlider}%,
+            #30303090 ${downloadedBufferPercentage}%,
+            #30303030 ${timeSlider}%,
+            #30303030 100%
           )
         `,
           maskImage: `

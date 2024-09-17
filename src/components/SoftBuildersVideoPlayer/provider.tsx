@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import Player from "video.js/dist/types/player";
 
 interface SoftBuildersVideoPlayerContextType {
@@ -36,7 +42,12 @@ export const SoftBuildersVideoPlayerProvider = ({
   const [duration, setDuration] = useState<number>(1);
   const [isPaused, setIsPaused] = useState(false);
   const [downloadedBufferTime, setDownloadedBufferTimeufferTime] = useState(0);
-  const downloadedBufferPercentage = 0;
+  const [downloadedBufferPercentage, setDownloadedBufferPercentage] =
+    useState(0);
+
+  useEffect(() => {
+    setDownloadedBufferPercentage((downloadedBufferTime * 100) / duration);
+  }, [downloadedBufferTime]);
 
   return (
     <SoftBuildersVideoPlayerContext.Provider

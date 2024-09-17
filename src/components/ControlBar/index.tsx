@@ -22,6 +22,7 @@ import {
   FullScreenIcon,
 } from "soft-builders-video-player-icons";
 import TimeSliderContainer from "../TimeSliderContainer";
+import BufferTracker from "../BufferTracker";
 
 type Props<T> = {
   player: Player | undefined;
@@ -59,6 +60,9 @@ const ControlBar = <T,>({
 
   return (
     <div className="flex items-center justify-center gap-3 w-full">
+      {/* Doesn't display anything, just set the downloaded buffer persentage */}
+      <BufferTracker />
+
       <button
         onClick={() => {
           seek(-seekStep);

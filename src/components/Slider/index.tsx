@@ -23,11 +23,11 @@ const Slider = ({
       value={value}
       onChange={handleValueChange}
       className={
-        "w-full h-2 bg-transparent bg-opacity-60  rounded-lg appearance-none cursor-pointer range-slider slider-thumb " +
+        "w-full h-2 bg-transparent bg-opacity-50 rounded-lg appearance-none cursor-pointer range-slider slider-thumb " +
         rest.className
       }
       style={{
-        background: `linear-gradient(to right, #f97316 ${value}%, #303030 ${value}%)`,
+        background: `linear-gradient(to right, #f97316 ${value}%, #30303070 ${value}%)`,
       }}
       {...rest}
     />
