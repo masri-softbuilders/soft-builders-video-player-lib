@@ -5,17 +5,7 @@ import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/pr
 type Props = {};
 
 const CurrentTimeLabel = ({}: Props) => {
-  const { currentTime, setCurrentTime, player } =
-    useSoftBuildersVideoPlayerContext();
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(player?.currentTime() || 0);
-    }, 500);
-
-    // Cleanup function to clear the interval
-    return () => clearInterval(intervalId);
-  }, [player]);
+  const { currentTime } = useSoftBuildersVideoPlayerContext();
 
   return <p>{durationFormater(currentTime)}</p>;
 };

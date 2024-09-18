@@ -23,6 +23,7 @@ import {
 } from "soft-builders-video-player-icons";
 import TimeSliderContainer from "../TimeSliderContainer";
 import BufferTracker from "../BufferTracker";
+import CurrentTimeTracker from "../CurrentTimeTracker";
 
 type Props<T> = {
   player: Player | undefined;
@@ -62,6 +63,8 @@ const ControlBar = <T,>({
     <div className="sb-flex sb-items-center sb-justify-center sb-gap-3 sb-w-full">
       {/* Doesn't display anything, just set the downloaded buffer persentage */}
       <BufferTracker />
+      {/* Doesn't display anything, just set the current time */}
+      <CurrentTimeTracker />
 
       <button
         onClick={() => {
