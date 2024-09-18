@@ -33,11 +33,11 @@ const VolumeSlider = ({}: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="sb-flex sb-items-center sb-gap-2">
       {volume === 0 || player?.muted() ? (
-        <MuteIcon className="w-3 h-3" />
+        <MuteIcon className="sb-w-3 sb-h-3" />
       ) : (
-        <UnmuteIcon className="w-3 h-3" />
+        <UnmuteIcon className="sb-w-3 sb-h-3" />
       )}
 
       <Slider

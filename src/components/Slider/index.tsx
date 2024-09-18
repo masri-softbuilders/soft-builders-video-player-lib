@@ -23,7 +23,7 @@ const Slider = ({
       value={value}
       onChange={handleValueChange}
       className={
-        "w-full h-2 bg-transparent bg-opacity-50 rounded-lg appearance-none cursor-pointer range-slider slider-thumb " +
+        "sb-w-full sb-h-2 sb-bg-transparent sb-bg-opacity-50 sb-rounded-lg sb-appearance-none sb-cursor-pointer sb-range-slider sb-slider-thumb " +
         rest.className
       }
       style={{

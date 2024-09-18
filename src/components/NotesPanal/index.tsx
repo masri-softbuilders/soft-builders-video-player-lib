@@ -23,7 +23,7 @@ const NotesPanal = ({ notes }: Props) => {
     setNs(newNs);
   }, [notes, duration]);
   return (
-    <div id="notes-panal" className="w-full h-full relative ">
+    <div id="notes-panal" className="sb-w-full sb-h-full sb-relative ">
       {ns.map((n, i) => (
         <NoteTooltip key={`note-${i}-${n.time}`} note={n} />
       ))}

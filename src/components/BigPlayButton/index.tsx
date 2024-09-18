@@ -18,11 +18,11 @@ const BigPlayButton = ({ player }: Props) => {
 
   return (
     <button onClick={togglePlay}>
-      <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-lg flex items-center justify-center ">
+      <div className="sb-w-16 sb-h-16 sb-rounded-full sb-bg-white/30 sb-backdrop-blur-lg sb-flex sb-items-center sb-justify-center ">
         {isPaused ? (
-          <PlayIcon className="w-4 h-4" />
+          <PlayIcon className="sb-w-4 sb-h-4" />
         ) : (
-          <PauseIcon className="w-4 h-4" />
+          <PauseIcon className="sb-w-4 sb-h-4" />
         )}
       </div>
     </button>

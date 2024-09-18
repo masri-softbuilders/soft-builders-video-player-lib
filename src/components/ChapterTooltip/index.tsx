@@ -33,7 +33,7 @@ const ChapterTooltip = ({ chapter }: Props) => {
   return (
     <div
       id={`ii-section-${chapter.title}`}
-      className="flex items-center w-full h-full absolute z-20"
+      className="sb-flex sb-items-center sb-w-full sb-h-full sb-absolute z-20"
       style={{
         left: `${chapter.startPercentage}%`,
         width: `${chapter.endPercentage - chapter.startPercentage}%`,
@@ -43,14 +43,14 @@ const ChapterTooltip = ({ chapter }: Props) => {
     >
       <button
         id={`section-${chapter.title}`}
-        className="h-full w-full"
+        className="sb-h-full sb-w-full"
         onClick={handleClickChapter}
       >
-        <div className="relative flex h-full w-full justify-between items-center">
+        <div className="sb-relative sb-flex sb-h-full sb-w-full sb-justify-between sb-items-center">
           <Tooltip open={open}>
-            <div className="flex flex-col gap-2 items-center">
+            <div className="sb-flex sb-flex-col sb-gap-2 sb-items-center">
               <p>{chapter.title}</p>
-              <p className="p-2 bg-[#303030] bg-opacity-50 rounded-md">
+              <p className="sb-p-2 sb-bg-[#303030] sb-bg-opacity-50 sb-rounded-md">
                 {durationFormater(chapter.startTime)} -{" "}
                 {durationFormater(chapter.endTime)}
               </p>

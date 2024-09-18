@@ -65,8 +65,8 @@ const TimeSlider = ({ chapters }: Props) => {
   }, [chapters, duration]);
 
   return (
-    <div className=" w-full h-2 flex items-center justify-center">
-      <div className="absolute top-0 left-0 w-full z-10">
+    <div className=" sb-w-full sb-h-2 sb-flex sb-items-center sb-justify-center">
+      <div className="sb-absolute sb-top-0 sb-left-0 sb-w-full sb-z-10">
         <Slider
           value={timeSlider}
           handleValueChange={handleValueChange}
@@ -79,7 +79,7 @@ const TimeSlider = ({ chapters }: Props) => {
       </div>
 
       <div
-        className="absolute top-0 left-0 w-full h-2 bg-slate-400 rounded-md"
+        className="sb-absolute sb-top-0 sb-left-0 sb-w-full sb-h-2 sb-bg-slate-400 sb-rounded-md"
         style={{
           background: `
           linear-gradient(to right,

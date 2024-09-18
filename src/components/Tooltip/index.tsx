@@ -7,7 +7,7 @@ type Props = {
 const Tooltip = ({ open, children }: Props) => {
   if (!open) return null;
   return (
-    <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 z-10 whitespace-nowrap">
+    <div className="sb-absolute sb-bottom-full sb-mb-2 sb-left-1/2 sb-transform sb--translate-x-1/2 sb-z-10 sb-whitespace-nowrap">
       {children}
     </div>
   );

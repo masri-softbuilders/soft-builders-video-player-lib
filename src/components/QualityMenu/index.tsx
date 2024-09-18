@@ -20,13 +20,13 @@ const QualityOption = ({
   onClick,
 }: QualityOptionProps) => {
   return (
-    <button className="hover:text-orange-500 p-2" onClick={onClick}>
-      <div className="grid grid-cols-12 items-center gap-2">
-        <div className="col-span-3">
-          {isSelected ? <CheckedIcon className="w-5 h-5" /> : <div></div>}
+    <button className="hover:sb-text-orange-500 sb-p-2" onClick={onClick}>
+      <div className="sb-grid sb-grid-cols-12 sb-items-center sb-gap-2">
+        <div className="sb-col-span-3">
+          {isSelected ? <CheckedIcon className="sb-w-5 sb-h-5" /> : <div></div>}
         </div>
 
-        <p className="text-left col-span-9">{quality.label}</p>
+        <p className="sb-text-left sb-col-span-9">{quality.label}</p>
       </div>
     </button>
   );
@@ -70,27 +70,27 @@ const QualityMenu = ({}: QualityMenuProps) => {
 
   return (
     <MenuButton
-      buttonContent={<SettingsIcon className="w-3 h-3" />}
+      buttonContent={<SettingsIcon className="sb-w-3 sb-h-3" />}
       menuContent={
-        <div className="rounded-md bg-[#303030] bg-opacity-50 py-5 w-[150px]">
-          <div className="flex flex-col gap-3">
-            <div className="px-5 flex flex-row gap-3 items-start">
+        <div className="sb-rounded-md sb-bg-[#303030] sb-bg-opacity-50 sb-py-5 sb-w-[150px]">
+          <div className="sb-flex sb-flex-col sb-gap-3">
+            <div className="sb-px-5 sb-flex sb-flex-row sb-gap-3 sb-items-start">
               <button
                 onClick={() => {
                   if (closeMenuFunction) {
                     closeMenuFunction();
                   }
                 }}
-                className="hover:scale-150"
+                className="hover:sb-scale-150"
               >
-                <LeftArrowIcon className="w-3 h-3" />
+                <LeftArrowIcon className="sb-w-3 sb-h-3" />
               </button>
               <h3>Quality</h3>
             </div>
 
-            <div className="w-full h-[.1px] bg-[#AAAAAA] bg-opacity-70" />
+            <div className="sb-w-full sb-h-[.1px] sb-bg-[#AAAAAA] sb-bg-opacity-70" />
 
-            <div className="px-5  flex flex-col gap-3 items-start">
+            <div className="sb-px-5  sb-flex sb-flex-col sb-gap-3 sb-items-start">
               {qualities.map((q, i) => {
                 return (
                   <QualityOption

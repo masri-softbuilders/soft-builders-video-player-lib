@@ -59,7 +59,7 @@ const ControlBar = <T,>({
   }, [player]);
 
   return (
-    <div className="flex items-center justify-center gap-3 w-full">
+    <div className="sb-flex sb-items-center sb-justify-center sb-gap-3 sb-w-full">
       {/* Doesn't display anything, just set the downloaded buffer persentage */}
       <BufferTracker />
 
@@ -68,13 +68,13 @@ const ControlBar = <T,>({
           seek(-seekStep);
         }}
       >
-        <BackwardIcon className="w-3 h-3" />
+        <BackwardIcon className="sb-w-3 sb-h-3" />
       </button>
       <button onClick={togglePlay}>
         {isPaused ? (
-          <PlayIcon className="w-3 h-3" />
+          <PlayIcon className="sb-w-3 sb-h-3" />
         ) : (
-          <PauseIcon className="w-3 h-3" />
+          <PauseIcon className="sb-w-3 sb-h-3" />
         )}
       </button>
       <button
@@ -82,18 +82,18 @@ const ControlBar = <T,>({
           seek(seekStep);
         }}
       >
-        <ForwardIcon className="w-3 h-3" />
+        <ForwardIcon className="sb-w-3 sb-h-3" />
       </button>
 
       <CurrentTimeLabel />
 
-      <div className="w-[30%] hover:w-[45%] transition-all ease-in-out duration-500">
+      <div className="sb-w-[30%] hover:sb-w-[45%] sb-transition-all sb-ease-in-out sb-duration-500">
         <TimeSliderContainer chapters={chapters} notes={notes} />
       </div>
 
       <p>{durationFormater(duration || 0)}</p>
 
-      <div className="w-[10%]">
+      <div className="sb-w-[10%]">
         <VolumeSlider />
       </div>
 
@@ -108,7 +108,7 @@ const ControlBar = <T,>({
           }
         }}
       >
-        <FullScreenIcon className="w-3 h-3" />
+        <FullScreenIcon className="sb-w-3 sb-h-3" />
       </button>
 
       <CreateNoteMenu handleSaveNoteAction={handleSaveNoteAction} />

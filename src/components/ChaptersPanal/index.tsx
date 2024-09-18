@@ -28,7 +28,7 @@ const ChaptersPanal = ({ chapters }: Props) => {
   }, [chapters, duration]);
 
   return (
-    <div id="chapters-panal" className="w-full h-full relative ">
+    <div id="chapters-panal" className="sb-w-full sb-h-full sb-relative ">
       {cs.map((c, i) => (
         <ChapterTooltip key={`chapter-${i}-${c.startTime}`} chapter={c} />
       ))}

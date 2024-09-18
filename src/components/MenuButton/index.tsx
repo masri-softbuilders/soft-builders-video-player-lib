@@ -38,7 +38,7 @@ const MenuButton = ({ buttonContent, menuContent, close }: Props) => {
   }, [close, closeMenu]);
 
   return (
-    <div className="relative">
+    <div className="sb-relative">
       <button
         ref={buttonRef}
         onClick={toggleMenu}
@@ -55,7 +55,7 @@ const MenuButton = ({ buttonContent, menuContent, close }: Props) => {
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="Open menu"
-          className="absolute shadow-lg right-0 bottom-10"
+          className="sb-absolute sb-shadow-lg sb-right-0 sb-bottom-10"
         >
           {menuContent}
         </div>

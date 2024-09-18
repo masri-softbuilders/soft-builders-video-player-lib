@@ -160,7 +160,10 @@ const SoftBuildersVideoPlayer = <T,>({
   }, [playerRef, isReady]);
 
   return (
-    <div id="video-container" className="relative rounded-md overflow-hidden">
+    <div
+      id="video-container"
+      className="sb-relative sb-rounded-md sb-overflow-hidden"
+    >
       <div data-vjs-player>
         <div ref={videoRef} />
       </div>

@@ -24,16 +24,16 @@ const NoteTooltip = ({ note }: Props) => {
   }, [currentTime, note.time]);
   return (
     <div
-      className="w-1 h-1 rounded-full bg-white absolute z-30"
+      className="sb-w-1 sb-h-1 sb-rounded-full sb-bg-white sb-absolute sb-z-30"
       style={{ left: `${note.percentage}%` }}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      <div className="relative">
+      <div className="sb-relative">
         <Tooltip open={open}>
-          <div className="flex flex-col gap-2 items-center">
+          <div className="sb-flex sb-flex-col sb-gap-2 sb-items-center">
             <p>{note.label}</p>
-            <p className="p-2 bg-[#303030] bg-opacity-50 rounded-md">
+            <p className="sb-p-2 sb-bg-[#303030] sb-bg-opacity-50 sb-rounded-md">
               {durationFormater(note.time)}
             </p>
           </div>
