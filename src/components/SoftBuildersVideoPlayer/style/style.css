@@ -5,23 +5,17 @@
 
 .video-js .vjs-big-play-button {
   background-color: transparent;
+  display: block;
   border: none;
   padding: 0px;
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
 
-:hover .video-js .vjs-big-play-button {
+.video-js:hover .vjs-big-play-button {
   background-color: transparent;
   border: none;
   padding: 0px;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
-}
-
-.vjs-controls-disabled .vjs-big-play-button,
-.vjs-has-started .vjs-big-play-button,
-.vjs-using-native-controls .vjs-big-play-button,
-.vjs-error .vjs-big-play-button {
-  display: block;
 }
