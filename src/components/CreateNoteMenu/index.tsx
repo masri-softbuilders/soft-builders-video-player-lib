@@ -30,7 +30,7 @@ const CreateNoteMenu = <T,>({ handleSaveNoteAction }: Props<T>) => {
       buttonContent={<ClosedNoteIcon className="sb-w-3 sb-h-3" />}
       menuContent={
         <div className="sb-rounded-md sb-bg-[#303030] sb-bg-opacity-50 sb-py-5 sb-w-[220px]">
-          <div className="flex flex-col gap-3">
+          <div className="sb-flex sb-flex-col sb-gap-3">
             <h3 className="sb-px-5">Add Note</h3>
 
             <div className="sb-w-full sb-h-[.1px] sb-bg-[#AAAAAA] sb-bg-opacity-70" />
