@@ -85,8 +85,8 @@ const TimeSlider = ({ chapters }: Props) => {
           linear-gradient(to right,
             #f97316 0%,
             #f97316 ${timeSlider}%,
-            #30303090 ${timeSlider}%,
-            #30303090 ${downloadedBufferPercentage}%,
+            #f9731640 ${timeSlider}%,
+            #f9731640 ${downloadedBufferPercentage}%,
             #30303030 ${timeSlider}%,
             #30303030 100%
           )
