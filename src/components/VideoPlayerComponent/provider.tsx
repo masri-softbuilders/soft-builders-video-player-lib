@@ -17,8 +17,8 @@ interface SoftBuildersVideoPlayerContextType {
   duration: number;
   setDuration: React.Dispatch<React.SetStateAction<number>>;
 
-  isPaused: boolean;
-  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
+  // isPaused: boolean;
+  // setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
 
   downloadedBufferPercentage: number;
   downloadedBufferTime: number;
@@ -40,7 +40,7 @@ export const SoftBuildersVideoPlayerProvider = ({
   const [player, setPlayer] = useState<Player | undefined>(undefined);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(1);
-  const [isPaused, setIsPaused] = useState(false);
+  // const [isPaused, setIsPaused] = useState(false);
   const [downloadedBufferTime, setDownloadedBufferTimeufferTime] = useState(0);
   const [downloadedBufferPercentage, setDownloadedBufferPercentage] =
     useState(0);
@@ -58,8 +58,8 @@ export const SoftBuildersVideoPlayerProvider = ({
         setDuration,
         currentTime,
         setCurrentTime: (value) => setCurrentTime(Math.floor(value)),
-        isPaused,
-        setIsPaused,
+        // isPaused,
+        // setIsPaused,
         downloadedBufferTime,
         setDownloadedBufferTimeufferTime,
         downloadedBufferPercentage,

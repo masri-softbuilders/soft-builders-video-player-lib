@@ -17,7 +17,11 @@ import BigPlayButton from "../BigPlayButton";
 
 let bigPlayButtonRoot: ReactDOM.Root | undefined;
 
-const renderBigPlayButton = (player: Player | undefined) => {
+const renderBigPlayButton = (
+  player: Player | undefined,
+  isPaused: boolean,
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const element: any = document.querySelector(".vjs-big-play-button");
   if (element) {
     if (!bigPlayButtonRoot) {
@@ -25,7 +29,13 @@ const renderBigPlayButton = (player: Player | undefined) => {
       bigPlayButtonRoot = ReactDOM.createRoot(element as HTMLElement);
     }
 
-    bigPlayButtonRoot.render(<BigPlayButton player={player} />);
+    bigPlayButtonRoot.render(
+      <BigPlayButton
+        player={player}
+        isPaused={isPaused}
+        setIsPaused={setIsPaused}
+      />
+    );
   }
 };
 
@@ -33,6 +43,8 @@ let controlBarRoot: ReactDOM.Root | undefined;
 
 const renderControlBar = <T,>(
   player: Player | undefined,
+  isPaused: boolean,
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>,
   notes: SoftBuildersVideoPlayerNote[],
   chapters: SoftBuildersVideoPlayerChapter[],
   seekStep: number = 5,
@@ -50,6 +62,8 @@ const renderControlBar = <T,>(
       <SoftBuildersVideoPlayerProvider>
         <ControlBar
           player={player}
+          isPaused={isPaused}
+          setIsPaused={setIsPaused}
           notes={notes}
           chapters={chapters}
           seekStep={seekStep}
@@ -77,6 +91,7 @@ const VideoPlayerComponent = <T,>({
   const playerRef = useRef<Player | undefined>(undefined);
 
   const [isReady, setIsReady] = useState(false);
+  const [isPaused, setIsPaused] = useState(!options.autoplay);
 
   const onReady = (player: Player) => {
     playerRef.current = player;
@@ -132,6 +147,8 @@ const VideoPlayerComponent = <T,>({
       setTimeout(() => {
         renderControlBar(
           playerRef.current,
+          isPaused,
+          setIsPaused,
           notes,
           chapters,
           5,
@@ -139,15 +156,23 @@ const VideoPlayerComponent = <T,>({
         );
       }, 500);
     }
-  }, [playerRef, notes, chapters, isReady, handleSaveNoteAction]);
+  }, [
+    playerRef,
+    isPaused,
+    setIsPaused,
+    notes,
+    chapters,
+    isReady,
+    handleSaveNoteAction,
+  ]);
 
   useEffect(() => {
     if (isReady) {
       setTimeout(() => {
-        renderBigPlayButton(playerRef.current);
+        renderBigPlayButton(playerRef.current, isPaused, setIsPaused);
       }, 500);
     }
-  }, [playerRef, isReady]);
+  }, [playerRef, isPaused, setIsPaused, isReady]);
 
   return (
     <div

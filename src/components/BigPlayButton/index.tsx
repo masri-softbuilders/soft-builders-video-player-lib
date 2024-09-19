@@ -5,10 +5,10 @@ import { PlayIcon, PauseIcon } from "soft-builders-video-player-icons";
 
 type Props = {
   player: Player | undefined;
+  isPaused: boolean;
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
 };
-const BigPlayButton = ({ player }: Props) => {
-  const [isPaused, setIsPaused] = useState(false);
-
+const BigPlayButton = ({ player, isPaused, setIsPaused }: Props) => {
   const togglePlay = () => {
     if (isPaused) player?.play();
     else player?.pause();

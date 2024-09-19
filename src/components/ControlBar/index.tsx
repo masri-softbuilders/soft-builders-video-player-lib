@@ -25,6 +25,8 @@ import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provi
 
 type Props<T> = {
   player: Player | undefined;
+  isPaused: boolean;
+  setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
   notes: SoftBuildersVideoPlayerNote[];
   chapters: SoftBuildersVideoPlayerChapter[];
   seekStep?: number;
@@ -32,12 +34,14 @@ type Props<T> = {
 };
 const ControlBar = <T,>({
   player,
+  isPaused,
+  setIsPaused,
   notes,
   chapters,
   seekStep = 5,
   handleSaveNoteAction,
 }: Props<T>) => {
-  const { isPaused, setIsPaused, setPlayer, setDuration, duration } =
+  const { setPlayer, setDuration, duration } =
     useSoftBuildersVideoPlayerContext();
 
   const seek = (duration: number) => {
