@@ -33,7 +33,7 @@ const ChapterTooltip = ({ chapter }: Props) => {
   return (
     <div
       id={`ii-section-${chapter.title}`}
-      className="sb-flex sb-items-center sb-w-full sb-h-full sb-absolute z-20"
+      className="sb-flex sb-items-center sb-w-full sb-h-full sb-absolute sb-z-20"
       style={{
         left: `${chapter.startPercentage}%`,
         width: `${chapter.endPercentage - chapter.startPercentage}%`,
