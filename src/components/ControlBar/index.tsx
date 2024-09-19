@@ -22,6 +22,7 @@ import {
   SoftBuildersVideoPlayerNote,
 } from "../../types";
 import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
+import SubtitleMenu from "../SubtitleMenu";
 
 type Props<T> = {
   player: Player | undefined;
@@ -121,6 +122,8 @@ const ControlBar = <T,>({
       </button>
 
       <CreateNoteMenu handleSaveNoteAction={handleSaveNoteAction} />
+
+      <SubtitleMenu />
     </div>
   );
 };

@@ -21,7 +21,7 @@
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "soft-builders-video-player-icons": "^1.0.5",
+    "soft-builders-video-player-icons": "^1.0.6",
     "video.js": "^8.18.0"
   },
   "devDependencies": {

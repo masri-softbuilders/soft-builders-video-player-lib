@@ -20,12 +20,12 @@ const options = {
   sources: [
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.1080p.vp9.webm",
-      // type: "video/webm",
+      type: "video/webm",
       label: "1080P",
     },
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm",
-      // type: "video/webm",
+      type: "video/webm",
       label: "360p",
     },
   ],
