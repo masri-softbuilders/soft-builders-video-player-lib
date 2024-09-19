@@ -106,6 +106,7 @@ const QualityMenu = ({}: QualityMenuProps) => {
                         const currentTime = player?.currentTime();
                         setCurrentQualitySrc(source.src);
                         player?.currentTime(currentTime);
+                        player?.play();
                       }
                     }}
                   />
