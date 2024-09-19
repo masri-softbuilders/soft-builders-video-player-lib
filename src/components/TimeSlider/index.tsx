@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Slider from "../Slider";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
-import { SoftBuildersVideoPlayerChapter } from "../SoftBuildersVideoPlayer/types";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
+import { SoftBuildersVideoPlayerChapter } from "../../types";
 
 const MIN = 0,
   MAX = 100;

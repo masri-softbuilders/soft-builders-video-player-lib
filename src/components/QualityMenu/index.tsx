@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import MenuButton from "../MenuButton";
-import { SoftBuildersVideoPlayerSource } from "../SoftBuildersVideoPlayer/types";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
 
 import {
   CheckedIcon,
   SettingsIcon,
   LeftArrowIcon,
 } from "soft-builders-video-player-icons";
+import { SoftBuildersVideoPlayerSource } from "../../types";
 
 type QualityOptionProps = {
   isSelected: boolean;

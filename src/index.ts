@@ -5,6 +5,6 @@ export {
   SoftBuildersVideoPlayerNote,
   SoftBuildersVideoPlayerOptions,
   SoftBuildersVideoPlayerSource,
-} from "./components/SoftBuildersVideoPlayer/types";
+} from "./types";
 
 export default SoftBuildersVideoPlayer;

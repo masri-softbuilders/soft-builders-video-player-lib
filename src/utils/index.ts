@@ -16,3 +16,11 @@ export const durationFormater = (seconds: number) => {
     )}`;
   }
 };
+
+export const convertSrtToVtt = (srt: string) => {
+  const vtt = srt
+    .replace(/(\d+)\n/g, "") // Remove numbering
+    .replace(/,(\d{3})/g, ".$1") // Change time format from ',' to '.'
+    .replace(/-->/g, " --> "); // Ensure correct arrow formatting
+  return `WEBVTT\n\n${vtt}`;
+};

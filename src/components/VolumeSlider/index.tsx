@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Slider from "../Slider";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
 
 import { MuteIcon, UnmuteIcon } from "soft-builders-video-player-icons";
 

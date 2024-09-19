@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { SoftBuildersVideoPlayerNote } from "../SoftBuildersVideoPlayer/types";
 import NoteTooltip from "../NoteTooltip";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
+import { SoftBuildersVideoPlayerNote } from "../../types";
 
 type Note = SoftBuildersVideoPlayerNote & { percentage: number };
 type Props = {

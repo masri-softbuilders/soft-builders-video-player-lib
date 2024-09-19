@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
 
 const CurrentTimeTracker = () => {
   const { setCurrentTime, player } = useSoftBuildersVideoPlayerContext();

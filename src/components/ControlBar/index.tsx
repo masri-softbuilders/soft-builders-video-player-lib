@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import Player from "video.js/dist/types/player";
 import CurrentTimeLabel from "../CurrentTimeLabel";
 import { durationFormater } from "../../utils";
-import TimeSlider from "../TimeSlider";
 import VolumeSlider from "../VolumeSlider";
 import QualityMenu from "../QualityMenu";
-import {
-  SoftBuildersVideoPlayerChapter,
-  SoftBuildersVideoPlayerNote,
-} from "../SoftBuildersVideoPlayer/types";
-import NotesPanal from "../NotesPanal";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
+
 import CreateNoteMenu from "../CreateNoteMenu";
-import ChaptersPanal from "../ChaptersPanal";
 import {
   BackwardIcon,
   PlayIcon,
@@ -24,6 +17,11 @@ import {
 import TimeSliderContainer from "../TimeSliderContainer";
 import BufferTracker from "../BufferTracker";
 import CurrentTimeTracker from "../CurrentTimeTracker";
+import {
+  SoftBuildersVideoPlayerChapter,
+  SoftBuildersVideoPlayerNote,
+} from "../../types";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
 
 type Props<T> = {
   player: Player | undefined;

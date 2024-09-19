@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MenuButton from "../MenuButton";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
 
 import { ClosedNoteIcon } from "soft-builders-video-player-icons";
 

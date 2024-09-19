@@ -9,8 +9,8 @@
     "dist/styles/tailwind.css"
   ],
   "scripts": {
-    "build:css": "npx postcss src/styles/tailwind.css -o dist/styles/tailwind.css && npx postcss src/components/Slider/style.css -o dist/components/Slider/style.css && npx postcss src/components/SoftBuildersVideoPlayer/style/style.css -o dist/components/SoftBuildersVideoPlayer/style/style.css",
-    "build:css:watch": "npx postcss src/styles/tailwind.css -o dist/styles/tailwind.css --watch && npx postcss src/components/Slider/style.css -o dist/components/Slider/style/style.css --watch && npx postcss src/components/SoftBuildersVideoPlayer/style/style.css -o dist/components/SoftBuildersVideoPlayer/style/style.css --watch",
+    "build:css": "npx postcss src/styles/tailwind.css -o dist/styles/tailwind.css && npx postcss src/components/Slider/style.css -o dist/components/Slider/style.css && npx postcss src/components/VideoPlayerComponent/style/style.css -o dist/components/VideoPlayerComponent/style/style.css",
+    "build:css:watch": "npx postcss src/styles/tailwind.css -o dist/styles/tailwind.css --watch && npx postcss src/components/Slider/style.css -o dist/components/Slider/style.css --watch && npx postcss src/components/VideoPlayerComponent/style/style.css -o dist/components/VideoPlayerComponent/style/style.css --watch",
     "build": "npm run build:css && tsc",
     "build:watch": "tsc --watch",
     "start": "concurrently \"npm run build:css:watch\" \"npm run build:watch\""

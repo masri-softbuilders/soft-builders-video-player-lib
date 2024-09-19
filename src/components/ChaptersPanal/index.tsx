@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { SoftBuildersVideoPlayerChapter } from "../SoftBuildersVideoPlayer/types";
-import { useSoftBuildersVideoPlayerContext } from "../SoftBuildersVideoPlayer/provider";
+
 import ChapterTooltip from "../ChapterTooltip";
+import { SoftBuildersVideoPlayerChapter } from "../../types";
+import { useSoftBuildersVideoPlayerContext } from "../VideoPlayerComponent/provider";
 
 type Chapter = SoftBuildersVideoPlayerChapter & {
   startPercentage: number;

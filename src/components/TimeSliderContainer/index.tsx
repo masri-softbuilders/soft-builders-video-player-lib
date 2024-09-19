@@ -1,11 +1,11 @@
 import React from "react";
-import {
-  SoftBuildersVideoPlayerChapter,
-  SoftBuildersVideoPlayerNote,
-} from "../SoftBuildersVideoPlayer/types";
 import NotesPanal from "../NotesPanal";
 import ChaptersPanal from "../ChaptersPanal";
 import TimeSlider from "../TimeSlider";
+import {
+  SoftBuildersVideoPlayerChapter,
+  SoftBuildersVideoPlayerNote,
+} from "../../types";
 
 type Props = {
   notes: SoftBuildersVideoPlayerNote[];
