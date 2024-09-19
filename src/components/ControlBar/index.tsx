@@ -27,6 +27,7 @@ type Props<T> = {
   player: Player | undefined;
   isPaused: boolean;
   setIsPaused: React.Dispatch<React.SetStateAction<boolean>>;
+  duration: number;
   notes: SoftBuildersVideoPlayerNote[];
   chapters: SoftBuildersVideoPlayerChapter[];
   seekStep?: number;
@@ -36,13 +37,13 @@ const ControlBar = <T,>({
   player,
   isPaused,
   setIsPaused,
+  duration,
   notes,
   chapters,
   seekStep = 5,
   handleSaveNoteAction,
 }: Props<T>) => {
-  const { setPlayer, setDuration, duration } =
-    useSoftBuildersVideoPlayerContext();
+  const { setPlayer, setDuration } = useSoftBuildersVideoPlayerContext();
 
   const seek = (duration: number) => {
     const currentTime = Number(player?.currentTime() || 0);
@@ -58,8 +59,11 @@ const ControlBar = <T,>({
 
   useEffect(() => {
     setPlayer(player);
-    setDuration(player?.duration() || 1);
   }, [player]);
+
+  useEffect(() => {
+    setDuration(duration);
+  }, [duration]);
 
   return (
     <div className="sb-flex sb-items-center sb-justify-center sb-gap-3 sb-w-full">
@@ -96,7 +100,7 @@ const ControlBar = <T,>({
         <TimeSliderContainer chapters={chapters} notes={notes} />
       </div>
 
-      <p>{durationFormater(duration || 0)}</p>
+      <p>{durationFormater(duration)}</p>
 
       <div className="sb-w-[10%]">
         <VolumeSlider />

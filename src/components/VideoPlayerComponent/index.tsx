@@ -45,6 +45,7 @@ const renderControlBar = <T,>(
   player: Player | undefined,
   isPaused: boolean,
   setIsPaused: React.Dispatch<React.SetStateAction<boolean>>,
+  duration: number,
   notes: SoftBuildersVideoPlayerNote[],
   chapters: SoftBuildersVideoPlayerChapter[],
   seekStep: number = 5,
@@ -64,6 +65,7 @@ const renderControlBar = <T,>(
           player={player}
           isPaused={isPaused}
           setIsPaused={setIsPaused}
+          duration={duration}
           notes={notes}
           chapters={chapters}
           seekStep={seekStep}
@@ -96,6 +98,7 @@ const VideoPlayerComponent = <T,>({
 
   const [isReady, setIsReady] = useState(false);
   const [isPaused, setIsPaused] = useState(!options.autoplay);
+  const [duration, setDuratoin] = useState(1);
 
   const onReady = (player: Player) => {
     playerRef.current = player;
@@ -105,6 +108,12 @@ const VideoPlayerComponent = <T,>({
 
     player.on("dispose", () => {
       videojs.log("player will dispose");
+      player.dispose();
+    });
+
+    player.on("loadedmetadata", () => {
+      const d = player.duration();
+      setDuratoin(d);
     });
   };
 
@@ -163,6 +172,7 @@ const VideoPlayerComponent = <T,>({
           playerRef.current,
           isPaused,
           setIsPaused,
+          duration,
           notes,
           chapters,
           5,
@@ -178,6 +188,7 @@ const VideoPlayerComponent = <T,>({
     chapters,
     isReady,
     handleSaveNoteAction,
+    duration,
   ]);
 
   useEffect(() => {

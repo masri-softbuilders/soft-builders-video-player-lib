@@ -38,7 +38,7 @@ const TimeSlider = ({ chapters }: Props) => {
 
     // Cleanup function to clear the interval
     return () => clearInterval(intervalId);
-  }, [player]);
+  }, [player, duration]);
 
   const [maskCuttes, setMaskCuttes] = useState("");
 
