@@ -101,12 +101,21 @@ const Component = () => {
     });
   };
 
+  const onPause = (time: number) => {
+    console.log(`Video has been Paused at time (${time} sec)`);
+  };
+  const onPlay = (time: number) => {
+    console.log(`Video has been Played at time (${time} sec)`);
+  };
+
   return (
     <SoftBuildersVideoPlayer
       options={options}
       chapters={chapters}
       notes={notes}
       handleSaveNoteAction={handleSaveNoteAction}
+      onPause={onPause}
+      onPlay={onPlay}
     />
   );
 };

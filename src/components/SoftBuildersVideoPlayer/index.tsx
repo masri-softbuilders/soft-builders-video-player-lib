@@ -11,6 +11,8 @@ export type Props<T = any> = {
   notes: SoftBuildersVideoPlayerNote[];
   chapters: SoftBuildersVideoPlayerChapter[];
   handleSaveNoteAction?: (time: number, note: string) => Promise<T>;
+  onPlay?: (time: number) => void;
+  onPause?: (time: number) => void;
 };
 
 const SoftBuildersVideoPlayer = <T,>({
@@ -18,6 +20,8 @@ const SoftBuildersVideoPlayer = <T,>({
   notes,
   chapters,
   handleSaveNoteAction,
+  onPlay,
+  onPause,
 }: Props<T>) => {
   options = {
     ...options,
@@ -31,6 +35,8 @@ const SoftBuildersVideoPlayer = <T,>({
       options={options}
       notes={notes}
       handleSaveNoteAction={handleSaveNoteAction}
+      onPause={onPause}
+      onPlay={onPlay}
     />
   );
 };

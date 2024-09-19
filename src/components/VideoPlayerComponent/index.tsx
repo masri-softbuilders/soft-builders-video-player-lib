@@ -79,6 +79,8 @@ export type Props<T = any> = {
   notes: SoftBuildersVideoPlayerNote[];
   chapters: SoftBuildersVideoPlayerChapter[];
   handleSaveNoteAction?: (time: number, note: string) => Promise<T>;
+  onPlay?: (time: number) => void;
+  onPause?: (time: number) => void;
 };
 
 const VideoPlayerComponent = <T,>({
@@ -86,6 +88,8 @@ const VideoPlayerComponent = <T,>({
   notes,
   chapters,
   handleSaveNoteAction,
+  onPlay,
+  onPause,
 }: Props<T>) => {
   const videoRef = useRef<any>(undefined);
   const playerRef = useRef<Player | undefined>(undefined);
@@ -141,6 +145,16 @@ const VideoPlayerComponent = <T,>({
       }
     };
   }, [playerRef]);
+
+  useEffect(() => {
+    const currentTime = playerRef?.current?.currentTime() || 0;
+
+    if (isPaused) {
+      if (onPause) onPause(currentTime);
+    } else {
+      if (onPlay) onPlay(currentTime);
+    }
+  }, [isPaused]);
 
   useEffect(() => {
     if (isReady) {
