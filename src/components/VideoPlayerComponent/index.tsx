@@ -108,7 +108,7 @@ const VideoPlayerComponent = <T,>({
 
     player.on("dispose", () => {
       videojs.log("player will dispose");
-      player.dispose();
+      setIsReady(false);
     });
 
     player.on("loadedmetadata", () => {
@@ -118,56 +118,47 @@ const VideoPlayerComponent = <T,>({
   };
 
   useEffect(() => {
-    // Make sure Video.js player is only initialized once
     if (!playerRef.current) {
-      // The Video.js player needs to be _inside_ the component el for React 18 Strict Mode.
       const videoElement = document.createElement("video-js");
-
       videoElement.classList.add("vjs-big-play-centered");
-      videoRef?.current?.appendChild(videoElement);
+      videoRef.current.appendChild(videoElement);
 
       const player = (playerRef.current = videojs(videoElement, options, () => {
-        videojs.log("player is ready");
-        onReady && onReady(player);
+        onReady(player);
       }));
-
-      // (player as any)?.controlBar.addChild("QualitySelector");
-
-      // You could update an existing player in the `else` block here
-      // on prop change, for example:
-    } else {
-      const player = playerRef.current;
-
-      player?.autoplay(options.autoplay);
-      player?.src(options.sources);
     }
-  }, [options, playerRef, videoRef]);
-
-  // Dispose the Video.js player when the functional component unmounts
-  useEffect(() => {
-    const player = playerRef.current;
 
     return () => {
-      if (player && !player.isDisposed()) {
-        player.dispose();
-        playerRef.current = undefined;
+      if (playerRef.current) {
+        playerRef.current.dispose();
+        playerRef.current = undefined; // Safely nullify the playerRef after dispose
+        if (bigPlayButtonRoot) {
+          bigPlayButtonRoot.unmount(); // Ensure React roots are cleaned up
+          bigPlayButtonRoot = undefined;
+        }
+        if (controlBarRoot) {
+          controlBarRoot.unmount();
+          controlBarRoot = undefined;
+        }
       }
     };
-  }, [playerRef]);
+  }, [options]);
 
   useEffect(() => {
-    const currentTime = playerRef?.current?.currentTime() || 0;
+    if (playerRef && playerRef?.current && isReady) {
+      const currentTime = playerRef.current.currentTime() || 0;
 
-    if (isPaused) {
-      if (onPause) onPause(currentTime);
-    } else {
-      if (onPlay) onPlay(currentTime);
+      if (isPaused) {
+        if (onPause) onPause(currentTime);
+      } else {
+        if (onPlay) onPlay(currentTime);
+      }
     }
-  }, [isPaused]);
+  }, [isPaused, isReady]);
 
   useEffect(() => {
     if (isReady) {
-      setTimeout(() => {
+      const controlBarTimeout = setTimeout(() => {
         renderControlBar(
           playerRef.current,
           isPaused,
@@ -179,6 +170,8 @@ const VideoPlayerComponent = <T,>({
           handleSaveNoteAction
         );
       }, 500);
+
+      return () => clearTimeout(controlBarTimeout); // Clean up the timeout
     }
   }, [
     playerRef,
@@ -193,11 +186,35 @@ const VideoPlayerComponent = <T,>({
 
   useEffect(() => {
     if (isReady) {
-      setTimeout(() => {
+      const playButtonTimeout = setTimeout(() => {
         renderBigPlayButton(playerRef.current, isPaused, setIsPaused);
       }, 500);
+
+      return () => clearTimeout(playButtonTimeout); // Clean up the timeout
     }
   }, [playerRef, isPaused, setIsPaused, isReady]);
+
+  useEffect(() => {
+    return () => {
+      // Clean up the bigPlayButtonRoot on unmount
+      if (bigPlayButtonRoot) {
+        bigPlayButtonRoot.unmount();
+        bigPlayButtonRoot = undefined;
+      }
+
+      // Clean up the controlBarRoot on unmount
+      if (controlBarRoot) {
+        controlBarRoot.unmount();
+        controlBarRoot = undefined;
+      }
+
+      // Dispose of the player when the component unmounts
+      if (playerRef.current) {
+        playerRef.current.dispose();
+        playerRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <div
