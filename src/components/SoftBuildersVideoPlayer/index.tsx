@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import VideoPlayerComponent from "../VideoPlayerComponent";
 import {
   SoftBuildersVideoPlayerChapter,
@@ -27,7 +27,7 @@ export type Props<T = any> = {
   onPause?: (time: number) => void;
 };
 
-const SoftBuildersVideoPlayer = <T,>({
+const Component = <T,>({
   options,
   notes,
   chapters,
@@ -66,5 +66,14 @@ const SoftBuildersVideoPlayer = <T,>({
     />
   );
 };
+
+const SoftBuildersVideoPlayer = memo(Component, (prevProps, nextProps) => {
+  return (
+    prevProps.options === nextProps.options &&
+    prevProps.notes === nextProps.notes &&
+    prevProps.chapters === nextProps.chapters &&
+    prevProps.startTime === nextProps.startTime
+  );
+});
 
 export default SoftBuildersVideoPlayer;
