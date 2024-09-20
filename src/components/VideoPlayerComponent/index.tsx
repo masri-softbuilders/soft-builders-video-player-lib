@@ -220,6 +220,17 @@ const VideoPlayerComponent = <T,>({
     };
   }, []);
 
+  useEffect(() => {
+    if (playerRef.current) {
+      const intervalId = setInterval(() => {
+        setIsPaused(playerRef.current.paused());
+      }, 500);
+
+      // Cleanup function to clear the interval
+      return () => clearInterval(intervalId);
+    }
+  }, [playerRef.current]);
+
   return (
     <div
       id="video-container"
