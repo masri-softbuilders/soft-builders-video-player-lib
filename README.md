@@ -9,24 +9,30 @@
 ## How to use
 
 ```typescript
-import SoftBuildersVideoPlayer from "soft-builders-video-player";
+import SoftBuildersVideoPlayer, {
+  SoftBuildersVideoPlayerOptions,
+  SoftBuildersVideoPlayerChapter,
+  SoftBuildersVideoPlayerNote,
+} from "soft-builders-video-player";
 
-const options = {
+const options: SoftBuildersVideoPlayerOptions = {
   autoplay: false,
   controls: true,
-  responsive: true,
   muted: true,
   fluid: true,
+  poster: "http://example.com/thumbnail.png", // thumbnail preview image
+  height: 420,
+  width: 720,
   sources: [
-    {
-      src: "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.1080p.vp9.webm",
-      type: "video/webm",
-      label: "1080P",
-    },
     {
       src: "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.360p.vp9.webm",
       type: "video/webm",
       label: "360p",
+    },
+    {
+      src: "https://upload.wikimedia.org/wikipedia/commons/transcoded/a/ab/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm/Caminandes_3_-_Llamigos_-_Blender_Animated_Short.webm.1080p.vp9.webm",
+      type: "video/webm",
+      label: "1080P",
     },
   ],
   tracks: [
@@ -37,41 +43,16 @@ const options = {
       label: "English",
       default: true,
     },
-  ],
-  width: 800,
-  height: 400,
-  inactivityTimeout: 0,
+    {
+      kind: "captions",
+      src: "https://gist.githubusercontent.com/samdutton/ca37f3adaf4e23679957b8083e061177/raw/e19399fbccbc069a2af4266e5120ae6bad62699a/sample.vtt",
+      srclang: "es",
+      label: "Espaniol",
+    },
+  ], // only vtt suptitilers are supported for now
 };
 
-const chapters = [
-  {
-    startTime: 28,
-    endTime: 30,
-    title: "01 Note: **** Important ****",
-  },
-  {
-    startTime: 46,
-    endTime: 48,
-    title: "02 Note: To Do",
-  },
-  {
-    startTime: 56,
-    endTime: 59,
-    title: "03 Note: DIY (Do it yourself)",
-  },
-  {
-    startTime: 70,
-    endTime: 140,
-    title: "04 Note: Make save notes",
-  },
-  {
-    startTime: 148,
-    endTime: 150,
-    title: "05 Note: Conclusion ",
-  },
-];
-
-const notes = [
+const initNotes: SoftBuildersVideoPlayerNote[] = [
   {
     time: 5,
     label: "Start",
@@ -94,6 +75,25 @@ const notes = [
   },
 ];
 
+const initChapters: SoftBuildersVideoPlayerChapter[] = [
+  {
+    startTime: 25,
+    endTime: 50,
+    title: "01 Note: **** Important ****",
+  },
+  {
+    startTime: 70,
+    endTime: 100,
+    title: "02 Note: To Do",
+  },
+  { startTime: 110, endTime: 120, title: "03 Note: DIY (Do it yourself)" },
+  {
+    startTime: 125,
+    endTime: 140,
+    title: "05 Note: Conclusion ",
+  },
+];
+
 const Component = () => {
   const handleSaveNoteAction = (time: number, note: string) => {
     return new Promise((resolve) => {
@@ -111,8 +111,8 @@ const Component = () => {
   return (
     <SoftBuildersVideoPlayer
       options={options}
-      chapters={chapters}
-      notes={notes}
+      chapters={initChapters}
+      notes={initNotes}
       handleSaveNoteAction={handleSaveNoteAction}
       onPause={onPause}
       onPlay={onPlay}

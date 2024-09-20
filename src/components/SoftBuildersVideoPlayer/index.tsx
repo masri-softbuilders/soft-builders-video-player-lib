@@ -6,6 +6,17 @@ import {
   SoftBuildersVideoPlayerOptions,
 } from "../../types";
 
+const DEFAULT_OPTIONS: SoftBuildersVideoPlayerOptions = {
+  autoplay: false,
+  controls: true,
+  fluid: true,
+  muted: true,
+  height: 420,
+  width: 720,
+  sources: [],
+  tracks: [],
+};
+
 export type Props<T = any> = {
   options: SoftBuildersVideoPlayerOptions;
   notes: SoftBuildersVideoPlayerNote[];
@@ -25,10 +36,22 @@ const SoftBuildersVideoPlayer = <T,>({
 }: Props<T>) => {
   options = {
     ...options,
+    responsive: true,
+    inactivityTimeout: 0,
     fullscreen: {
       navigationUI: "hide",
     },
   } as any;
+
+  if (options.autoplay === undefined)
+    options.autoplay = DEFAULT_OPTIONS.autoplay;
+  if (options.controls === undefined)
+    options.controls = DEFAULT_OPTIONS.controls;
+  if (options.fluid === undefined) options.fluid = DEFAULT_OPTIONS.fluid;
+  if (options.muted === undefined) options.muted = DEFAULT_OPTIONS.muted;
+  if (options.height === undefined) options.height = DEFAULT_OPTIONS.height;
+  if (options.width === undefined) options.width = DEFAULT_OPTIONS.width;
+
   return (
     <VideoPlayerComponent
       chapters={chapters}

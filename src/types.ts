@@ -5,24 +5,21 @@ export type SoftBuildersVideoPlayerSource = {
 };
 
 export type SoftBuildersVideoPlayerOptions = {
-  autoplay: boolean;
-  controls: boolean;
-  responsive: boolean;
-  fluid: boolean;
-  muted: boolean;
+  autoplay?: boolean;
+  controls?: boolean;
+  fluid?: boolean;
+  muted?: boolean;
+  poster?: string;
   sources: SoftBuildersVideoPlayerSource[];
   tracks: {
     kind: string;
     src: string;
     srclang: string;
     label: string;
-    default: boolean;
+    default?: boolean;
   }[];
-  width: number;
-  height: number;
-  inactivityTimeout: any;
-  // controlBar: any;
-  // spatialNavigation: any;
+  width?: number;
+  height?: number;
 };
 
 export interface SoftBuildersVideoPlayerNote {
