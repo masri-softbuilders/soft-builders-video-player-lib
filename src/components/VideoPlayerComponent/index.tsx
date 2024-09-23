@@ -15,33 +15,42 @@ import "../../styles/tailwind.css";
 import { SoftBuildersVideoPlayerProvider } from "./provider";
 import BigPlayButton from "../BigPlayButton";
 
-let bigPlayButtonRoot: ReactDOM.Root | undefined;
+let bigPlayButtonRoot: {
+  [key: string]: ReactDOM.Root | undefined;
+} = {};
 
 const renderBigPlayButton = (
+  id: string,
   player: Player | undefined,
   isPaused: boolean,
   setIsPaused: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  const element: any = document.querySelector(".vjs-big-play-button");
-  if (element) {
-    if (!bigPlayButtonRoot) {
-      // If bigPlayButtonRoot hasn't been created, create it
-      bigPlayButtonRoot = ReactDOM.createRoot(element as HTMLElement);
-    }
+  const container = document.getElementById(`video-container-${id}`);
+  if (container) {
+    const element: any = container.querySelector(".vjs-big-play-button");
+    if (element) {
+      if (!bigPlayButtonRoot[id]) {
+        // If bigPlayButtonRoot hasn't been created, create it
+        bigPlayButtonRoot[id] = ReactDOM.createRoot(element as HTMLElement);
+      }
 
-    bigPlayButtonRoot.render(
-      <BigPlayButton
-        player={player}
-        isPaused={isPaused}
-        setIsPaused={setIsPaused}
-      />
-    );
+      bigPlayButtonRoot[id].render(
+        <BigPlayButton
+          player={player}
+          isPaused={isPaused}
+          setIsPaused={setIsPaused}
+        />
+      );
+    }
   }
 };
 
-let controlBarRoot: ReactDOM.Root | undefined;
+let controlBarRoot: {
+  [key: string]: ReactDOM.Root | undefined;
+} = {};
 
 const renderControlBar = <T,>(
+  id: string,
   player: Player | undefined,
   isPaused: boolean,
   setIsPaused: React.Dispatch<React.SetStateAction<boolean>>,
@@ -51,32 +60,36 @@ const renderControlBar = <T,>(
   seekStep: number = 5,
   handleSaveNoteAction?: (time: number, note: string) => Promise<T>
 ) => {
-  const element: any = document.querySelector(".vjs-control-bar");
-  if (element) {
-    if (!controlBarRoot) {
-      // If controlBarRoot hasn't been created, create it
-      controlBarRoot = ReactDOM.createRoot(element as HTMLElement);
-    }
+  const container = document.getElementById(`video-container-${id}`);
+  if (container) {
+    const element: any = container.querySelector(".vjs-control-bar");
+    if (element) {
+      if (!controlBarRoot[id]) {
+        // If controlBarRoot hasn't been created, create it
+        controlBarRoot[id] = ReactDOM.createRoot(element as HTMLElement);
+      }
 
-    element.style.display = "block";
-    controlBarRoot.render(
-      <SoftBuildersVideoPlayerProvider>
-        <ControlBar
-          player={player}
-          isPaused={isPaused}
-          setIsPaused={setIsPaused}
-          duration={duration}
-          notes={notes}
-          chapters={chapters}
-          seekStep={seekStep}
-          handleSaveNoteAction={handleSaveNoteAction}
-        />
-      </SoftBuildersVideoPlayerProvider>
-    );
+      element.style.display = "block";
+      controlBarRoot[id].render(
+        <SoftBuildersVideoPlayerProvider>
+          <ControlBar
+            player={player}
+            isPaused={isPaused}
+            setIsPaused={setIsPaused}
+            duration={duration}
+            notes={notes}
+            chapters={chapters}
+            seekStep={seekStep}
+            handleSaveNoteAction={handleSaveNoteAction}
+          />
+        </SoftBuildersVideoPlayerProvider>
+      );
+    }
   }
 };
 
 export type Props<T = any> = {
+  id: string;
   options: SoftBuildersVideoPlayerOptions;
   notes: SoftBuildersVideoPlayerNote[];
   chapters: SoftBuildersVideoPlayerChapter[];
@@ -87,6 +100,7 @@ export type Props<T = any> = {
 };
 
 const VideoPlayerComponent = <T,>({
+  id,
   options,
   notes,
   chapters,
@@ -140,13 +154,13 @@ const VideoPlayerComponent = <T,>({
 
         // Defer unmounting of big play button and control bar to avoid race conditions
         setTimeout(() => {
-          if (bigPlayButtonRoot) {
-            bigPlayButtonRoot.unmount();
-            bigPlayButtonRoot = undefined;
+          if (bigPlayButtonRoot[id]) {
+            bigPlayButtonRoot[id].unmount();
+            bigPlayButtonRoot[id] = undefined;
           }
-          if (controlBarRoot) {
-            controlBarRoot.unmount();
-            controlBarRoot = undefined;
+          if (controlBarRoot[id]) {
+            controlBarRoot[id].unmount();
+            controlBarRoot[id] = undefined;
           }
         }, 0);
       }
@@ -169,6 +183,7 @@ const VideoPlayerComponent = <T,>({
     if (isReady) {
       const controlBarTimeout = setTimeout(() => {
         renderControlBar(
+          id,
           playerRef.current,
           isPaused,
           setIsPaused,
@@ -183,6 +198,7 @@ const VideoPlayerComponent = <T,>({
       return () => clearTimeout(controlBarTimeout); // Clean up the timeout
     }
   }, [
+    id,
     playerRef,
     isPaused,
     setIsPaused,
@@ -196,12 +212,12 @@ const VideoPlayerComponent = <T,>({
   useEffect(() => {
     if (isReady) {
       const playButtonTimeout = setTimeout(() => {
-        renderBigPlayButton(playerRef.current, isPaused, setIsPaused);
+        renderBigPlayButton(id, playerRef.current, isPaused, setIsPaused);
       }, 500);
 
       return () => clearTimeout(playButtonTimeout); // Clean up the timeout
     }
-  }, [isPaused, isReady]);
+  }, [id, isPaused, isReady]);
 
   useEffect(() => {
     if (playerRef.current) {
@@ -215,7 +231,7 @@ const VideoPlayerComponent = <T,>({
 
   return (
     <div
-      id="video-container"
+      id={`video-container-${id}`}
       className="sb-relative sb-rounded-md sb-overflow-hidden"
     >
       <div data-vjs-player>

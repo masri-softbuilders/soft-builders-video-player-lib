@@ -54,8 +54,11 @@ const Component = <T,>({
   if (options.height === undefined) options.height = DEFAULT_OPTIONS.height;
   if (options.width === undefined) options.width = DEFAULT_OPTIONS.width;
 
+  const id = (Date.now() + Math.random() * 100).toString();
+
   return (
     <VideoPlayerComponent
+      id={id}
       chapters={chapters}
       options={options}
       notes={notes}
