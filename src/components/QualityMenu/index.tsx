@@ -101,7 +101,7 @@ const QualityMenu = ({}: QualityMenuProps) => {
                       const source = qualities.find(
                         (_q) => q.label == _q.label
                       );
-                      if (source) {
+                      if (source && source.src != currentQualitySrc) {
                         player?.src(source.src);
                         const currentTime = player?.currentTime();
                         setCurrentQualitySrc(source.src);

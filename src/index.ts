@@ -5,6 +5,7 @@ export {
   SoftBuildersVideoPlayerNote,
   SoftBuildersVideoPlayerOptions,
   SoftBuildersVideoPlayerSource,
+  SoftBuildersVideoPlayerTrack,
 } from "./types";
 
 export default SoftBuildersVideoPlayer;
