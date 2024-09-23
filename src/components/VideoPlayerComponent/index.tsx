@@ -127,23 +127,28 @@ const VideoPlayerComponent = <T,>({
       videoElement.classList.add("vjs-big-play-centered");
       videoRef.current.appendChild(videoElement);
 
-      const player = (playerRef.current = videojs(videoElement, options, () => {
-        onReady(player);
-      }));
+      playerRef.current = videojs(videoElement, options, () => {
+        onReady(playerRef.current as Player);
+      });
     }
 
     return () => {
       if (playerRef.current) {
+        // Dispose of the player properly on component unmount
         playerRef.current.dispose();
-        playerRef.current = undefined; // Safely nullify the playerRef after dispose
-        if (bigPlayButtonRoot) {
-          bigPlayButtonRoot.unmount(); // Ensure React roots are cleaned up
-          bigPlayButtonRoot = undefined;
-        }
-        if (controlBarRoot) {
-          controlBarRoot.unmount();
-          controlBarRoot = undefined;
-        }
+        playerRef.current = undefined;
+
+        // Defer unmounting of big play button and control bar to avoid race conditions
+        setTimeout(() => {
+          if (bigPlayButtonRoot) {
+            bigPlayButtonRoot.unmount();
+            bigPlayButtonRoot = undefined;
+          }
+          if (controlBarRoot) {
+            controlBarRoot.unmount();
+            controlBarRoot = undefined;
+          }
+        }, 0);
       }
     };
   }, [options]);
@@ -196,29 +201,7 @@ const VideoPlayerComponent = <T,>({
 
       return () => clearTimeout(playButtonTimeout); // Clean up the timeout
     }
-  }, [playerRef, isPaused, setIsPaused, isReady]);
-
-  useEffect(() => {
-    return () => {
-      // Clean up the bigPlayButtonRoot on unmount
-      if (bigPlayButtonRoot) {
-        bigPlayButtonRoot.unmount();
-        bigPlayButtonRoot = undefined;
-      }
-
-      // Clean up the controlBarRoot on unmount
-      if (controlBarRoot) {
-        controlBarRoot.unmount();
-        controlBarRoot = undefined;
-      }
-
-      // Dispose of the player when the component unmounts
-      if (playerRef.current) {
-        playerRef.current.dispose();
-        playerRef.current = null;
-      }
-    };
-  }, []);
+  }, [isPaused, isReady]);
 
   useEffect(() => {
     if (playerRef.current) {
@@ -226,10 +209,9 @@ const VideoPlayerComponent = <T,>({
         setIsPaused(playerRef.current.paused());
       }, 500);
 
-      // Cleanup function to clear the interval
       return () => clearInterval(intervalId);
     }
-  }, [playerRef.current]);
+  }, []);
 
   return (
     <div
