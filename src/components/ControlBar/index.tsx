@@ -121,7 +121,9 @@ const ControlBar = <T,>({
         <FullScreenIcon className="sb-w-3 sb-h-3" />
       </button>
 
-      <CreateNoteMenu handleSaveNoteAction={handleSaveNoteAction} />
+      {handleSaveNoteAction && (
+        <CreateNoteMenu handleSaveNoteAction={handleSaveNoteAction} />
+      )}
 
       <SubtitleMenu />
     </div>
