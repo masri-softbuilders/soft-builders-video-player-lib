@@ -41,6 +41,7 @@ const options: SoftBuildersVideoPlayerOptions = {
       src: "https://raw.githubusercontent.com/brenopolanski/html5-video-webvtt-example/master/MIB2-subtitles-pt-BR.vtt",
       srclang: "en",
       label: "English",
+      memeType: "text/vtt", // text/vtt or text/srt
       default: true,
     },
     {
@@ -48,6 +49,7 @@ const options: SoftBuildersVideoPlayerOptions = {
       src: "https://gist.githubusercontent.com/samdutton/ca37f3adaf4e23679957b8083e061177/raw/e19399fbccbc069a2af4266e5120ae6bad62699a/sample.vtt",
       srclang: "es",
       label: "Espaniol",
+      memeType: "text/vtt", // text/vtt or text/srt
     },
   ], // only vtt suptitilers are supported for now
 };
